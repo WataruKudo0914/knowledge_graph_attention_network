@@ -283,7 +283,7 @@ if __name__ == '__main__':
             print('ERROR: loss@phase2 is nan.')
             sys.exit()
 
-        show_step = 10
+        show_step = 2
         if (epoch + 1) % show_step != 0:
             if args.verbose > 0 and epoch % args.verbose == 0:
                 perf_str = 'Epoch %d [%.1fs]: train==[%.5f=%.5f + %.5f + %.5f]' % (
@@ -338,7 +338,8 @@ if __name__ == '__main__':
     pres = np.array(pre_loger)
     ndcgs = np.array(ndcg_loger)
     hit = np.array(hit_loger)
-
+    
+    
     best_rec_0 = max(recs[:, 0])
     idx = list(recs[:, 0]).index(best_rec_0)
 
@@ -355,7 +356,7 @@ if __name__ == '__main__':
 
     f.write('embed_size=%d, lr=%.4f, layer_size=%s, node_dropout=%s, mess_dropout=%s, regs=%s, loss_type=%s, n_memory=%d,'
             'item_update_mode=%s, using_all_hops=%s, adj_type=%s, use_att=%s, use_kge=%s\n\t%s\n'
-            % (args.embed_size, args.lr, args.layer_size, args.node_dropout, args.mess_dropout, args.regs, args.loss_type, args.n_memory,
+            % (args.embed_size, args.lr, args.layer_size, args.node_dropout, args.mess_dropout, args.regs, args.model_type, args.n_memory,
                args.item_update_mode, args.using_all_hops, args.adj_type, args.use_att, args.use_kge, final_perf))
     f.close()
 
